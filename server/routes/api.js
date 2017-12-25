@@ -100,8 +100,8 @@ let getProducts =(ids)=>{
         {
             let bids=[];
             bids.push(ids);
-            let ids=bids;
-        } 
+             ids=bids;
+        }
         ids.forEach( async i=>{
             console.log('getting p ');
             //products.push(await shopify.product.get(i));
