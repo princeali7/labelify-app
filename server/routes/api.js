@@ -202,7 +202,7 @@ router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
       //  res.header["content-disposition"]="attachment; filename= "+doc.info.Title+".pdf";
         //res.setHeader("Content-Type","application/force-download");
 
-        res.download('what.pdf',doc.info.Title);
+        res.download('what.pdf',doc.info.Title+'.pdf');
 
         console.log('returning buffer pdf ');
 
