@@ -132,6 +132,23 @@ let getProductsbyPageId =(page,pagesize)=>{
 
 }
 
+router.get('/downloadlabelview.pdf',verifyShop,async (req, res) => {
+    //res.send('ok')
+          let query= querystring.stringify(req.query);
+res.send(`
+
+<script>
+
+//  console.log(${query});
+window.top.location.href='${config.app_url}/api/downloadlabel.pdf?${query}';
+</script> 
+
+`);
+
+
+});
+
+
 router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
     //res.send('ok')
 
@@ -179,6 +196,8 @@ router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
 
 
 });
+
+
 
 
 
