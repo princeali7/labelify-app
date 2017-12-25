@@ -96,7 +96,12 @@ let getProducts =(ids)=>{
     let products=[];
     let index=0;
     return new Promise(resolve => {
-
+        if(!Array.isArray(ids))
+        {
+            let bids=[];
+            bids.push(ids);
+            let ids=bids;
+        } 
         ids.forEach( async i=>{
             console.log('getting p ');
             //products.push(await shopify.product.get(i));
