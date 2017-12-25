@@ -173,7 +173,17 @@ router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
    // res.send(products) ;
 
     var doc = new PDFDocument({size:[90,162]});
-       doc.info.Title = 'Products (' +req.query.ids.join(', ')+")";
+    if(Array.isArray(req.query.ids))
+    {
+        doc.info.Title = 'Products (' +req.query.ids.join(', ')+")";
+
+    }
+    else{
+        doc.info.Title = 'Product (' +req.query.ids+")";
+
+    }
+//       doc.info.Title = 'Products (' +req.query.ids.join(', ')+")";
+
    // res.setHeader('Content-Disposition',"attachment; filename= "+doc.info.Title+".pdf");
     var stream = doc.pipe(fs.createWriteStream('what.pdf'));
 
