@@ -200,7 +200,7 @@ router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
 
         var data =fs.readFileSync('what.pdf');
       //  res.header["content-disposition"]="attachment; filename= "+doc.info.Title+".pdf";
-        //res.setHeader("Content-Type","application/force-download");
+       // res.setHeader("Content-Type","application/pdf");
 
         res.download('what.pdf',doc.info.Title+'.pdf');
 
@@ -406,8 +406,14 @@ let createPdfLabel = async (product,filename,res)=>{
                 .stroke()
 
             //console.log(body);
-
-            doc.image(vImg, 10, 30, {width:70,height:10})
+        if(variant.sku)
+        {
+            if(variant.sku.startsWith(688))
+            {
+               variant.sku= variant.sku.replace(/(.{3})/g,' $1').trim();
+            }
+        }
+            doc.image(vImg, 10, 30, {fit:[70,60]})
                 .fontSize(7)
             .moveTo(5, 5).text(variant.sku? variant.sku : '      ' , 10, 12, {
             width: 70, height: 1,
@@ -533,35 +539,44 @@ let singleProductLabel = (product,doc)=>{
             //console.log(vImg);
             if(vImg!="" && vImg){
                 try {
-            doc.image(vImg, 10, 30, {width: 70,height:60})
+
+                    doc.image(vImg, 10, 30, {fit:[70,60]})
+
             }
             catch(ex){
                     console.log('ecx'+ex);
             }
             }
-             doc.fontSize(7)
-                .moveTo(5, 5).text(variant.sku? variant.sku : '      ' , 10, 12, {
+            if(variant.sku)
+            {
+                if(variant.sku.startsWith(688))
+                {
+                    variant.sku= variant.sku.replace(/(.{3})/g,' $1').trim();
+                }
+            }
+             doc.fontSize(9)
+                .moveTo(5, 5).text(variant.sku? variant.sku: '      ' , 10, 12, {
                 width: 70, height: 1,
                 align: 'center',
                 indent: 0
 
             })
-                .moveDown(10)
-                .fontSize(6)
+                .moveDown(7.5)
+                .fontSize(7)
                 .text(pTitle, {
                     width: 70,
-                    align: 'left', indent: 0, height: 20,
+                    align: 'left', indent: 0, height: 30,
 
 
                 })
-                .fontSize(6)
+                .fontSize(7).fillColor('green')
                 .text(variantTitle, {
-                    width: 75, height: 1,
+                    width: 75, height: 30,
                     align: 'left',
 
 
                 })
-                .fontSize(4)
+                .fontSize(5).fillColor('black')
                 .text(pVendor, {
                     width: 75, height: 1,
                     align: 'left',
