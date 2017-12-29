@@ -157,7 +157,7 @@ window.top.location.href='${config.app_url}/api/downloadlabel.pdf?${query}';
 router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
     //res.send('ok')
 
-
+    firstEver=true;
     console.log('starting product');
      let products=[];
 
@@ -218,7 +218,7 @@ router.get('/downloadlabel.pdf',verifyShop,async (req, res) => {
 
 router.get('/downloadlabels.pdf',verifyShop,async (req, res) => {
     //res.send('ok')
-
+    firstEver=true;
 
     console.log('starting product');
     let products=[];
@@ -565,21 +565,20 @@ let singleProductLabel = (product,doc)=>{
                 .fontSize(7)
                 .text(pTitle, {
                     width: 70,
-                    align: 'left', indent: 0, height: 30,
+                    align: 'center', indent: 0, height: 30,
 
 
                 })
-                .fontSize(7).fillColor('green')
+                .fontSize(7).fillColor('green') .moveDown(.5)
                 .text(variantTitle, {
-                    width: 75, height: 30,
-                    align: 'left',
-
+                    width: 72, height: 30,
+                    align: 'center',
 
                 })
                 .fontSize(5).fillColor('black')
-                .text(pVendor, {
+                .text(pVendor,8,148, {
                     width: 75, height: 1,
-                    align: 'left',
+                    align: 'center',
 
                 })
                 .moveTo(5, 5)
@@ -608,8 +607,7 @@ let singleProductLabel = (product,doc)=>{
 let createMultiplePdfLabel = async (products,filename,res,doc,stream)=>{
 
     let indexP=1;
-
-    products.forEach(async product=>{
+    for(var product of products){
 
 
 
@@ -627,6 +625,7 @@ let createMultiplePdfLabel = async (products,filename,res,doc,stream)=>{
         //    doc.addPage();
         }
         await singleProductLabel(product,doc);
+
         console.log(indexP,products.length);
         if (indexP == products.length ) {
             doc.end();
@@ -640,7 +639,7 @@ let createMultiplePdfLabel = async (products,filename,res,doc,stream)=>{
 
         indexP++;
 
-    });
+    };
 
 
 
