@@ -540,7 +540,7 @@ let singleProductLabel = (product,doc)=>{
             if(vImg!="" && vImg){
                 try {
 
-                    doc.image(vImg, 10, 30, {fit:[70,60]})
+                    doc.image(vImg, 10, 30, {fit:[70,60],align:'center',valign: 'center'})
 
             }
             catch(ex){
