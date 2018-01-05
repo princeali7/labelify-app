@@ -569,7 +569,7 @@ let singleProductLabel = (product,doc)=>{
 
 
                 })
-                .fontSize(7).fillColor('green') .moveDown(.5)
+                .fontSize(7).fillColor('black') .moveDown(.5)
                 .text(variantTitle, {
                     width: 72, height: 30,
                     align: 'center',
