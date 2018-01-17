@@ -576,7 +576,7 @@ let singleProductLabel = (product,doc)=>{
 
                 })
                 .fontSize(5).fillColor('black')
-                .text(pVendor,8,148, {
+                .text('',8,148, {  //pvendor previously
                     width: 75, height: 1,
                     align: 'center',
 
