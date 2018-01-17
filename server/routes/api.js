@@ -437,7 +437,7 @@ let createPdfLabel = async (product,filename,res)=>{
 
             })
                 .fontSize(4)
-            .text(pVendor, {
+            .text('', {   //pVENDOR WAS HER
             width: 75, height: 1,
             align: 'left',
 
