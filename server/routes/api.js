@@ -437,7 +437,7 @@ let createPdfLabel = async (product,filename,res)=>{
 
             })
                 .fontSize(4)
-            .text('', {   //pVENDOR WAS HER
+            .text(pVendor, {   //pVENDOR WAS HER
             width: 75, height: 1,
             align: 'left',
 
@@ -576,7 +576,7 @@ let singleProductLabel = (product,doc)=>{
 
                 })
                 .fontSize(5).fillColor('black')
-                .text('',8,148, {  //pvendor previously
+                .text(pVendor,8,148, {  //pvendor previously
                     width: 75, height: 1,
                     align: 'center',
 
