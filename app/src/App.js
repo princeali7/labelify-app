@@ -21,6 +21,16 @@ class App extends Component {
             currentpage:1,
             count:0,
             options:[],
+            typeoptions      : [
+                {
+                    label    : "Vertical for 2\" kraft bins",
+                    value    : "vertical"
+                } ,  {
+                    label    : "Horizontal for poly bins",
+                    value    : "horizon"
+                }
+            ],
+	        currenttype:'horizon',
             loading: true,
             saveText: 'Save',
             savingNotification: false
@@ -79,7 +89,7 @@ class App extends Component {
 
     downloadProducts(){
     //    localhost:3000
-        window.open(apiUrl+`/api/downloadlabels.pdf?shop=true-north-arms-corp.myshopify.com&page=${this.state.currentpage}`);
+        window.open(apiUrl+`/api/downloadlabels.pdf?shop=true-north-arms-corp.myshopify.com&type=${this.state.currenttype}&page=${this.state.currentpage}`);
         this.setState({savingNotification:true});
         setTimeout(()=>{
             this.setState({savingNotification:false});
@@ -120,6 +130,16 @@ class App extends Component {
                                     }}
                                      value={this.state.currentpage}
                                 />
+	                            <Select
+		                            label="Type "
+		                            options={this.state.typeoptions}
+		                            placeholder="Select Type"
+		                            onChange={(v)=>{
+			                            console.log(v);
+			                            this.setState({currenttype:v})
+		                            }}
+		                            value={this.state.currenttype}
+	                            />
                                 <Button primary onClick={this.downloadProducts.bind(this)}
                                     loading={this.state.savingNotification}>Download</Button>
 
