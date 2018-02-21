@@ -357,7 +357,7 @@ function getbase64(url){
 
 let createPdfLabel = async (product,filename,res)=>{
     let pTitle= product.title;
-    let pVendor= product.vendor;
+    let pVendor= ''// product.vendor;
 
     console.log(pTitle);
 
@@ -445,7 +445,7 @@ let createPdfLabel = async (product,filename,res)=>{
             .moveTo(5, 5)
             .rect(5, 5, 80, 20)
             .rect(5, 25, 80, 70)
-            .rect(5, 95, 80, 60)
+            .rect(5, 95, 80, 60) 
             .strokeColor('grey')
             .stroke();
          // console.log(index);
@@ -484,7 +484,7 @@ let createPdfLabel = async (product,filename,res)=>{
 
 let singleProductLabel = (product,doc)=>{
     let pTitle= product.title;
-    let pVendor= product.vendor;
+    let pVendor=  ''; // product.vendor;
     let indexV=1;
     doc.fontSize(7); // doc.addPage();
     return new Promise(resolve => {
@@ -612,7 +612,7 @@ let createMultiplePdfLabel = async (products,filename,res,doc,stream)=>{
 
 
     let pTitle= product.title;
-    let pVendor= product.vendor;
+    let pVendor= ''//product.vendor;
 
     console.log(pTitle);
 
